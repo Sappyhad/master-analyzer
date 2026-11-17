@@ -1,0 +1,94 @@
+{
+  "_comment": "MasterCheck configuration. Thresholds are heuristic starting points, not standards. Tune them for your genre and references.",
+
+  "analysis": {
+    "true_peak_oversampling": 4,
+    "max_memory_mb": 2048,
+    "silence_floor_dbfs": -60.0,
+    "crest_window_s": 0.4,
+    "loudest_fragment_s": 15.0,
+    "section_min_duration_s": 8.0,
+    "section_min_level_difference_lu": 2.0,
+    "welch_nperseg": 8192,
+    "spectrogram_nperseg": 4096,
+    "stereo_window_s": 1.0,
+    "low_band_cutoff_hz": 150.0,
+    "plot_spectrum_smoothing_octave": 6
+  },
+
+  "bands": [
+    {"name": "sub_bass", "label": "Sub-bass", "low_hz": 20,    "high_hz": 60},
+    {"name": "bass",     "label": "Bass",     "low_hz": 60,    "high_hz": 120},
+    {"name": "low_mid",  "label": "Low-mid",  "low_hz": 120,   "high_hz": 250},
+    {"name": "mid",      "label": "Mid",      "low_hz": 250,   "high_hz": 2000},
+    {"name": "high_mid", "label": "High-mid", "low_hz": 2000,  "high_hz": 6000},
+    {"name": "high",     "label": "High",     "low_hz": 6000,  "high_hz": 12000},
+    {"name": "air",      "label": "Air",      "low_hz": 12000, "high_hz": 20000}
+  ],
+
+  "band_groups": {
+    "bass": ["sub_bass", "bass"],
+    "mid":  ["low_mid", "mid", "high_mid"],
+    "high": ["high", "air"]
+  },
+
+  "normalization": {
+    "target_lufs": -14.0,
+    "true_peak_ceiling_dbtp": -1.0
+  },
+
+  "codec_simulation": {
+    "enabled": true,
+    "timeout_s": 300,
+    "codecs": [
+      {"name": "MP3 320 kbps", "encoder": "libmp3lame", "bitrate": "320k", "extension": "mp3"},
+      {"name": "MP3 128 kbps", "encoder": "libmp3lame", "bitrate": "128k", "extension": "mp3"},
+      {"name": "AAC 256 kbps", "encoder": "aac",        "bitrate": "256k", "extension": "m4a"},
+      {"name": "AAC 128 kbps", "encoder": "aac",        "bitrate": "128k", "extension": "m4a"}
+    ]
+  },
+
+  "thresholds": {
+    "true_peak_max_dbtp": -1.0,
+    "full_scale_dbfs": -0.01,
+    "clip_run_min_samples": 3,
+    "clip_min_runs": 3,
+    "flat_top_tolerance_db": 0.001,
+    "flat_top_min_runs": 3,
+    "crest_factor_low_db": 8.0,
+    "windowed_crest_low_db": 8.0,
+    "low_crest_fraction_high": 0.5,
+    "peak_density_high_pct": 1.0,
+    "plr_low_db": 8.0,
+    "lra_low_lu": 3.0,
+    "lra_high_lu": 15.0,
+    "section_difference_lu": 4.0,
+    "transient_prominence_p95_low_db": 9.0,
+    "correlation_problem": 0.0,
+    "low_band_correlation_min": 0.6,
+    "mono_loss_warn_lu": -3.0,
+    "lr_balance_warn_db": 1.0,
+    "side_to_mid_high_db": -3.0,
+    "pumping_correlation": -0.3,
+    "resonance_prominence_db": 8.0,
+    "lossy_lowpass_drop_db": 30.0,
+    "codec_true_peak_increase_db": 0.5,
+    "loud_master_lufs": -9.0,
+    "reference_lufs_diff_lu": 2.0,
+    "reference_crest_diff_db": 2.0,
+    "reference_lra_diff_lu": 3.0,
+    "reference_band_diff_db": 3.0,
+    "reference_correlation_diff": 0.2,
+    "reference_side_mid_diff_db": 3.0
+  },
+
+  "genre_profiles": {
+    "_comment": "Rough sanity bounds on spectral energy share (% of 20 Hz-20 kHz energy, mid/mono signal). Used only when no references are available and only flag extreme cases. References always take priority.",
+    "default":  {"sub_bass_max_pct": 45.0, "mid_group_min_pct": 12.0, "high_group_max_pct": 12.0},
+    "edm":      {"sub_bass_max_pct": 60.0, "mid_group_min_pct": 8.0},
+    "hiphop":   {"sub_bass_max_pct": 60.0, "mid_group_min_pct": 8.0},
+    "rock":     {"sub_bass_max_pct": 35.0},
+    "acoustic": {"sub_bass_max_pct": 25.0, "mid_group_min_pct": 20.0},
+    "classical":{"sub_bass_max_pct": 25.0, "mid_group_min_pct": 20.0}
+  }
+}
