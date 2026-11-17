@@ -11,6 +11,7 @@
 [![Offline](https://img.shields.io/badge/100%25-offline-success?style=flat-square)](#)
 [![Last commit](https://img.shields.io/github/last-commit/Sappyhad/master-analyzer?style=flat-square)](https://github.com/Sappyhad/master-analyzer/commits)
 [![Repo size](https://img.shields.io/github/repo-size/Sappyhad/master-analyzer?style=flat-square)](https://github.com/Sappyhad/master-analyzer)
+[![License: MIT](https://img.shields.io/badge/license-MIT-yellow?style=flat-square)](LICENSE)
 
 [![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white)](https://numpy.org/)
 [![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=flat-square&logo=scipy&logoColor=white)](https://scipy.org/)
@@ -383,3 +384,9 @@ Czytelne komunikaty (bez tracebacków) dla:
 - błędnego `config.json`.
 
 Uszkodzona referencja jest pomijana z ostrzeżeniem — analiza trwa dalej.
+
+---
+
+## 📜 Licencja
+
+[MIT](LICENSE) © Sappyhad
